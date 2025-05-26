@@ -28,4 +28,4 @@ app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
 
-console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
+
