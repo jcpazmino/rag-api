@@ -1,0 +1,6 @@
+curl -X POST http://localhost:3000/query \
+  -H "Content-Type: application/json" \
+  -d '{"pregunta": "¿Cuál es la finalidad de la asignatura Diseño digital?"}'
+
+
+curl.exe -X POST http://localhost:3000/query -H "Content-Type: application/json" -d "{\"pregunta\": \"¿Cuál es la finalidad de la asignatura Diseño digital?\"}"

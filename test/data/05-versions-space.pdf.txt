@@ -1,0 +1,38 @@
+
+
+SEMASIGNATURASFINALIDADRAPF1RAPF2RAPC1RAPC2RAPP1RAPP2
+Arte y Diseño GráficoDesarrollar habilidades fundamentales en principios de diseño, teoría del color, composición y creación de elementos visuales que servirán como base para todo contenido multimedia.X
+Introducción a la IngenieríaProporcionar una visión general de la ingeniería multimedia, sus campos de aplicación y metodologías básicas de trabajo en proyectos tecnológicos.
+Informática y Redes de ComunicaciónComprender los fundamentos de las redes de computadoras y protocolos de comunicación necesarios para sistemas multimedia distribuidos.X
+Programación IIntroducir los conceptos básicos de programación y lógica computacional como base para el desarrollo de aplicaciones multimedia.X
+Audio y Video DigitalAprender técnicas de captura, edición y procesamiento de audio y video en formato digital.XXX
+Programación IIProfundizar en conceptos avanzados de programación orientada a objetos y estructuras de datos para aplicaciones multimedia más complejas.
+Guíón para Medios DigitalesDesarrollar habilidades para crear narrativas y estructuras de contenido efectivas para diferentes medios digitales.XX
+Programación WEBAprender tecnologías y lenguajes para el desarrollo de aplicaciones web interactivas y contenido multimedia en línea.X
+Bases de Datos MultimedialGestionar y organizar diferentes tipos de contenido multimedia en sistemas de bases de datos especializadosXX
+Modelado y Animación DigitalIntroducir técnicas de modelado 3D y principios de animación digital.X
+Procesamiento de Señales y AudioComprender y aplicar técnicas de procesamiento digital de señales, especialmente enfocadas en audio.XX
+Interacción Humano ComputadorEstudiar principios de diseño de interfaces y experiencias de usuario centradas en la interacción persona-computadora.X
+Interfaces y Experiencia Multimedial de UsuarioProfundizar en el diseño de interfaces específicas para aplicaciones multimedia y evaluación de experiencia de usuario.X
+Diseño Multimedial I (Animacón 2D)
+Desarrollar habilidades en animación bidimensional y motion graphics.XX
+Seguridad InformáticaAprender principios y técnicas para proteger sistemas y contenido multimedia de amenazas digitales.
+Procesamiento Digital de ImágenesEstudiar técnicas de manipulación y procesamiento de imágenes digitales.XXX
+Video JuegosAprender desarrollo de videojuegos, incluyendo motores de juego, mecánicas y diseño de niveles.X
+Realidad Mixta y VirtualExplorar tecnologías y aplicaciones de realidad virtual y entornos inmersivos.X
+Diseño Multimedial II (Animación 3D)Profundizar en técnicas avanzadas de modelado y animación tridimensional.X
+Servicios Multimedia Basados en InternetDesarrollar servicios y aplicaciones multimedia distribuidas a través de Internet.X
+Gestión de Sistemas y Tecnologías MultimediasAprender a gestionar proyectos multimedia y equipos de desarrollo.X
+Inteligencia ArtificialIntroducir conceptos y aplicaciones de IA en sistemas multimedia interactivos.XX
+Realidad AumentadaExplorar el desarrollo de aplicaciones que combinan elementos virtuales con el mundo real.X
+Producción MultimedialIntegrar diferentes elementos multimedia en proyectos completos y profesionales.XX
+Legislación para Contenidos DigitalesComprender aspectos legales y éticos relacionados con la creación y distribución de contenido digital.XX
+Diseño de Experiencias InteractivasCrear experiencias multimedia inmersivas e interactivas integrando diferentes tecnologías y medios.X
+7
+8
+1
+2
+3
+4
+5
+6

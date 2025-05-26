@@ -1,0 +1,57 @@
+
+
+AsignaturaFinalidad
+Diseño digital
+Desarrollar habilidades fundamentales en principios de diseño, teoría del color, composición y creación de elementos visuales, complementado con el dominio de 
+software de diseño como Adobe Photoshop e Illustrator, para la creación de gráficos, interfaces y contenido visual atractivo y efectivo
+Modelado y Animación 2D
+Desarrollar habilidades en la creación de animaciones 2D, dominando las interpolaciones de movimiento y forma, diseñando ilustraciones y personajes, y creando 
+entornos multimedia interactivos
+Modelado  y Animación 3D
+Desarrollar habilidades en el modelado de objetos poligonales en 3D, la creación de animaciones tridimensionales y el diseño de experiencias interactivas en 
+entornos de realidad virtual, realidad mixta y videojuegos
+Audio y video
+Desarrollar habilidades en la producción audiovisual, la edición de video y la integración de servicios multimedia para televisión digital e internet, permitiendo la 
+creación de contenido de video atractivo y la manipulación de audio para mejorar la experiencia multimedia
+Animaciones interactivas
+Desarrollar habilidades en la creación de contenidos multimedia interactivos, incluyendo minijuegos y aplicaciones, comprendiendo los intereses del público 
+objetivo y diseñando experiencias interactivas que mejoren la navegación y el engagement del usuario
+Modelado 3D
+Desarrollar habilidades fundamentales en la creación de representaciones matemáticas tridimensionales de objetos y formas utilizando software especializado, 
+aplicando técnicas de modelado poligonal, NURBS y modelado de sólidos para la creación de prototipos virtuales precisos y detallados
+Rigging y animación 3D
+"Desarrollar habilidades fundamentales en la creación de esqueletos virtuales y controles para modelos 3D, permitiendo la animación de personajes y objetos con 
+movimientos realistas y expresivos, aplicando principios de animación y técnicas de manipulación de huesos y pesos
+Proyectos multimedia
+Desarrollar habilidades fundamentales en la gestión y ejecución de proyectos multimedia, integrando diseño, modelado, animación, audio y video, aplicando 
+metodologías de gestión de proyectos y herramientas de colaboración para la creación de productos multimedia cohesivos y efectivos
+PostProducción digital
+Desarrollar habilidades fundamentales en la edición y mejora de contenido multimedia, aplicando técnicas de corrección de color, efectos visuales, composición y 
+masterización de audio y video, utilizando software especializado para la creación de productos finales de alta calidad
+Realidad mixta y virtual
+Desarrollar habilidades fundamentales en la creación de experiencias inmersivas e interactivas en entornos de realidad mixta y virtual, aplicando principios de diseño 
+de interacción, desarrollo de contenido 3D y programación de interacciones para la creación de aplicaciones y simulaciones innovadoras
+Guión y diseño multiemdia
+Desarrollar habilidades fundamentales en la creación de narrativas visuales y guiones adaptados a diferentes medios, aplicando principios de diseño, estructura 
+narrativa y teoría del color para la planificación y desarrollo de proyectos multimedia cohesivos y efectivos
+Producción audiovisual
+Desarrollar habilidades fundamentales en la planificación, organización y ejecución de proyectos audiovisuales, aplicando técnicas de preproducción, rodaje y 
+postproducción, así como la gestión de recursos y equipos para la creación de productos audiovisuales de alta calidad
+Audio y video para multimedia
+Desarrollar habilidades fundamentales en la captura, edición y manipulación de audio y video, aplicando técnicas de grabación, mezcla, masterización y efectos 
+visuales para la creación de contenido audiovisual inmersivo y atractivo en proyectos multimedia
+Diseño interactivo
+Desarrollar habilidades fundamentales en la creación de interfaces de usuario intuitivas y experiencias interactivas, aplicando principios de diseño de interacción, 
+usabilidad y accesibilidad para la creación de aplicaciones y plataformas multimedia centradas en el usuario
+Aplicaciones multimedia
+Desarrollar habilidades fundamentales en la programación y desarrollo de aplicaciones multimedia, integrando elementos visuales, audio, video e interactividad, 
+aplicando lenguajes de programación y herramientas de desarrollo para la creación de soluciones multimedia innovadoras y funcionales
+semiótica/teoría de la imagen
+Desarrollar habilidades fundamentales en la interpretación y análisis de signos visuales, comprendiendo los procesos de significación y representación que permiten 
+decodificar imágenes en contextos culturales y sociales, lo que resulta esencial para la creación de contenido multimedia efectivo
+Transmedia digital
+Desarrollar habilidades fundamentales en la creación y gestión de narrativas que se despliegan a través de múltiples plataformas y formatos, integrando diferentes 
+medios para contar historias coherentes y atractivas que fomenten la participación activa del público
+guión para multimedia
+Desarrollar habilidades fundamentales en la escritura y estructuración de guiones adaptados a diferentes formatos multimedia, aplicando principios narrativos y 
+técnicas de desarrollo de personajes para crear contenido atractivo y eficaz que capte la atención del público
