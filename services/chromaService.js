@@ -1,6 +1,7 @@
+import 'dotenv/config'; // <-- Agrega esta línea al inicio
+
 import axios from 'axios';
 import OpenAI from 'openai';
-import { queryCollection, getCollectionIdByName } from './chromaService.js';
 
 const BASE_URL = process.env.CHROMA_URL || 'http://localhost:8000';
 const TENANT = process.env.CHROMA_TENANT || 'default_tenant';
@@ -31,15 +32,12 @@ async function searchInChromaDB(textQuery) {
   const nResults = 3;
   const result = await queryCollection(collectionId, queryEmbedding, nResults);
 
-  console.log('Resultados de la consulta:', result);
   return result;
 }
 
 export async function getCollectionIdByName(name) {
-  const res = await axios.get(
-    `${BASE_URL}/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections`
-  );
-  console.log('Respuesta de ChromaDB:', res.data); // <-- Agrega este log
+  const res = await axios.get( `${BASE_URL}/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections`);
+
   // Ajusta el acceso según la estructura real:
   let collections = res.data.collections;
   if (!collections && Array.isArray(res.data)) {
@@ -73,14 +71,37 @@ export async function addToCollection(collectionId, ids, embeddings, metadatas, 
 }
 
 export async function queryCollection(collectionId, queryEmbedding, n = 3) {
+
+
+  const body = {
+    query_embeddings: [queryEmbedding], // array de arrays
+    n_results: n,
+    include: ["documents", "metadatas", "distances"]
+  };
+
+
+
   const res = await axios.post(
     `${BASE_URL}/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections/${collectionId}/query`,
+    body
+  );
+  return res.data;
+}
+
+export async function listDocumentsInCollection(collectionId) {
+  const res = await axios.post(
+    `${BASE_URL}/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections/${collectionId}/get`,
     {
-      query_embeddings: [queryEmbedding],
-      n_results: n
+      // Puedes dejar el body vacío para traer todos los documentos
     }
   );
   return res.data;
+}
+
+export async function deleteCollection(collectionId) {
+  await axios.delete(
+    `${BASE_URL}/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections/${collectionId}`
+  );
 }
 
 

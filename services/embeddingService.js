@@ -79,6 +79,7 @@ router.post('/', upload.single('pdf'), async (req, res) => {
     for (let i = 0; i < chunks.length; i++) {
       const chunk = chunks[i];
       const embedding = await getEmbedding(chunk);
+ 
       embeddings.push(embedding);
       metadatas.push({ chunk, index: i });
       ids.push(`frag_${Date.now()}_${i}`);
@@ -112,6 +113,7 @@ export async function createEmbedding(file) {
     for (let i = 0; i < chunks.length; i++) {
       const chunk = chunks[i];
       const embedding = await getEmbedding(chunk);
+
       embeddings.push(embedding);
       metadatas.push({ chunk, index: i });
       ids.push(`frag_${Date.now()}_${i}`);

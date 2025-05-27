@@ -7,11 +7,14 @@ dotenv.config();
 
 import express from 'express';
 import fileUpload from 'express-fileupload';
+import cors from 'cors'; 
 import embedRoutes from './routes/embed.js';
 import queryRoutes from './routes/query.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors()); 
 
 app.use('/embed-pdf', embedRoutes);
 app.use('/query', queryRoutes);
@@ -27,5 +30,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
+//console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY);
 
 
