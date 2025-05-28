@@ -12,7 +12,7 @@ import path from 'path';
 import pdf from 'pdf-parse';
 import { encoding_for_model } from 'tiktoken';
 import OpenAI from 'openai';
-import { getCollectionIdByName, createCollection, addToCollection } from '../services/chromaService.js';
+import { getCollectionIdByName, createCollection, addToCollection } from './chromaService.js';
 import axios from 'axios';
 
 const encoder = encoding_for_model('text-embedding-3-small');

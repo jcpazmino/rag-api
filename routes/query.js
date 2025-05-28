@@ -7,7 +7,7 @@
 
 import express from 'express';
 import OpenAI from 'openai';
-import { queryCollection, getCollectionIdByName, listDocumentsInCollection, deleteCollection, createCollection } from '../services/chromaService.js';
+import { queryCollection, getCollectionIdByName, listDocumentsInCollection, deleteCollection, createCollection } from '../services/rag/chromaService.js';
 
 const router = express.Router();
 router.use(express.json());

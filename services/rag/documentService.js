@@ -1,4 +1,4 @@
-import { pool } from './mysqlService.js';
+import { pool } from '../mysqlService.js';
 
 // Agregar un documento
 export async function addDocument(document) {

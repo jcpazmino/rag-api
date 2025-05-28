@@ -6,7 +6,7 @@ import {
   getChunkById,
   updateChunk,
   deleteChunk
-} from '../services/documentChunkService.js';
+} from '../services/rag/documentChunkService.js';
 
 const router = express.Router();
 

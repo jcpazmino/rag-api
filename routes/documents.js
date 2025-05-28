@@ -5,7 +5,7 @@ import {
   getDocumentById,
   updateDocument,
   deleteDocument
-} from '../services/documentService.js';
+} from '../services/rag/documentService.js';
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import { pool } from './mysqlService.js';
+import { pool } from '../mysqlService.js';
 
 // Crear un chunk
 export async function addChunk(chunk) {

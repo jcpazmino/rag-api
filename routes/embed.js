@@ -3,7 +3,7 @@
 
 import express from 'express';
 import multer from 'multer';
-import { createEmbedding } from '../services/embeddingService.js';
+import { createEmbedding } from '../services/rag/embeddingService.js';
 
 const router = express.Router();
 const upload = multer({ dest: 'data/uploads' });
