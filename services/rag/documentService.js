@@ -1,4 +1,6 @@
 import { pool } from '../mysqlService.js';
+import fs from 'fs';
+import path from 'path';
 
 // Agregar un documento
 export async function addDocument(document) {
@@ -91,3 +93,27 @@ export async function deleteDocument(id) {
   await pool.query('DELETE FROM documents WHERE id = ?', [id]);
   return { id };
 }
+
+/**
+ * Envía un archivo PDF almacenado en data/uploads/pdf
+ * @param {Object} res - response de Express
+ * @param {string} fileName - nombre del archivo a enviar
+ */
+export function enviaFile(res, fileName) {
+  const filePath = path.join('data', 'uploads', 'pdf', fileName);
+
+  // Verifica si el archivo existe
+  if (!fs.existsSync(filePath)) {
+    res.status(404).json({ error: 'Archivo no encontrado.' });
+    return;
+  }
+
+  // Configura los encabezados para descarga de PDF
+  res.setHeader('Content-Type', 'application/pdf');
+  res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+
+  // Envía el archivo
+  const fileStream = fs.createReadStream(filePath);
+  fileStream.pipe(res);
+}
+

@@ -4,7 +4,8 @@ import {
   getAllDocuments,
   getDocumentById,
   updateDocument,
-  deleteDocument
+  deleteDocument,
+  enviaFile
 } from '../services/rag/documentService.js';
 
 const router = express.Router();
@@ -58,6 +59,16 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Error al eliminar documento.' });
   }
+});
+
+// Descargar archivo PDF por query param file_name
+router.get('/download', (req, res) => {
+  const fileName = req.query.file_name;
+  if (!fileName) {
+    return res.status(400).json({ error: 'El parámetro file_name es requerido.' });
+  }
+  console.log('Enviando archivo:', `data/uploads/pdf/${fileName}`);
+  enviaFile(res, fileName);
 });
 
 export default router;
