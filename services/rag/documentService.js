@@ -2,16 +2,36 @@ import { pool } from '../mysqlService.js';
 
 // Agregar un documento
 export async function addDocument(document) {
+  const now = new Date();
   const [result] = await pool.query(
-    'INSERT INTO documents (title, content) VALUES (?, ?)',
-    [document.title, document.content]
+    `INSERT INTO documents 
+      (title, file_name, description, author, category, tags, source, language, upload_date, uploaded_by, processed, total_chunks, total_tokens, embedding_model, version, status) 
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      document.title,
+      document.file_name,
+      document.description,
+      document.author,
+      document.category,
+      JSON.stringify(document.tags ?? []),
+      document.source ?? document.file_name,
+      document.language,
+      now,
+      document.uploaded_by ?? 'system', // Usuario por defecto si no se proporciona
+      document.processed ?? true,
+      document.total_chunks ?? 0,
+      document.total_tokens ?? 0,
+      document.embedding_model ?? 'text-embedding-ada-002',
+      document.version,
+      'procesado' // status fijo
+    ]
   );
-  return { id: result.insertId, ...document };
+  return { id: result.insertId, ...document, upload_date: now, status: 'procesado' };
 }
 
 // Consultar todos los documentos
-export async function getAllDocuments() {
-  const [rows] = await pool.query('SELECT * FROM documents');
+export async function getAllDocuments(pageSize = 100) {
+  const [rows] = await pool.query('SELECT * FROM documents ORDER BY title LIMIT ?', [pageSize]);
   return rows;
 }
 
@@ -23,11 +43,47 @@ export async function getDocumentById(id) {
 
 // Modificar un documento
 export async function updateDocument(id, document) {
+  const now = new Date();
   await pool.query(
-    'UPDATE documents SET title = ?, content = ? WHERE id = ?',
-    [document.title, document.content, id]
+    `UPDATE documents SET 
+      title = ?, 
+      file_name = ?, 
+      description = ?, 
+      author = ?, 
+      category = ?, 
+      tags = ?, 
+      source = ?, 
+      language = ?, 
+      upload_date = ?, 
+      uploaded_by = ?, 
+      processed = ?, 
+      total_chunks = ?, 
+      total_tokens = ?, 
+      embedding_model = ?, 
+      version = ?, 
+      status = ?
+     WHERE id = ?`,
+    [
+      document.title,
+      document.file_name,
+      document.description,
+      document.author,
+      document.category,
+      JSON.stringify(document.tags ?? []),
+      document.source ?? document.file_name,
+      document.language,
+      now,
+      document.uploaded_by ?? 'system',
+      document.processed ?? true,
+      document.total_chunks ?? 0,
+      document.total_tokens ?? 0,
+      document.embedding_model ?? 'text-embedding-ada-002',
+      document.version,
+      'procesado', // status fijo
+      id
+    ]
   );
-  return { id, ...document };
+  return { id, ...document, upload_date: now, status: 'procesado' };
 }
 
 // Borrar un documento

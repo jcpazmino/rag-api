@@ -23,13 +23,14 @@ const CHROMA_URL = process.env.CHROMA_URL || 'http://localhost:8000';
 app.use(cors()); 
 
 app.use('/embed-pdf', embedRoutes);
-app.use('/query', queryRoutes);
-app.use('/documents', documentsRouter);
-app.use('/document-chunks', documentChunksRouter);
 
 app.use(express.json());
 app.use(fileUpload());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/query', queryRoutes);
+app.use('/documents', documentsRouter);
+app.use('/document-chunks', documentChunksRouter);
 
 app.get('/', (req, res) => {
   res.send('🧠 RAG API is running...');

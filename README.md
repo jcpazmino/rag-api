@@ -144,3 +144,70 @@ rag-api/
 
 MIT
 
+## Databases Used
+
+This application uses two main databases:
+
+1. **ChromaDB**  
+   - Vector database for storing and querying embeddings and metadata of document fragments.
+   - Accessed via its REST API (default: `http://localhost:8000`).
+   - Used for semantic search and context retrieval.
+
+2. **MySQL**  
+   - Relational database for storing structured information about documents and their fragments (tables like `documents` and `document_chunks`).
+   - Accessed via the `mysql2` client from Node.js.
+   - Used for administration, querying, and management of documents and their structured metadata.
+
+**Summary:**  
+The app uses **ChromaDB** for embeddings and semantic search, and **MySQL** for structured document and fragment management.
+
+## ChromaDB Setup
+
+The command to create and run a ChromaDB container using Docker is:
+
+```sh
+docker run -d -p 8000:8000 ghcr.io/chroma-core/chroma:latest
+```
+
+By default, the ChromaDB REST API will be available at `http://localhost:8000`.
+
+**Database name used in ChromaDB:**  
+The application uses the database named:
+
+```
+rag_api
+```
+
+This is set via the environment variable `CHROMA_DATABASE=rag_api` in your `.env` file.
+**To create the database in PowerShell:**
+```powershell
+curl -Method POST http://localhost:8000/api/v2/tenants/default_tenant/databases `
+  -Headers @{"Content-Type"="application/json"} `
+  -Body '{"name": "rag_api"}'
+```
+
+**To validate if the database exists:**
+```powershell
+curl http://localhost:8000/api/v2/tenants/default_tenant/databases
+```
+
+## MySQL Setup
+
+The command to create and run a MySQL container using Docker is:
+
+```sh
+docker run --name mysql-RAG -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=ragdb -p 3306:3306 -d mysql:8
+```
+
+- `--name mysql-RAG` → container name
+- `-e MYSQL_ROOT_PASSWORD=1234` → root user password
+- `-e MYSQL_DATABASE=ragdb` → database name to be created automatically
+- `-p 3306:3306` → exposes port 3306 for external connections
+- `-d mysql:8` → uses the official MySQL version 8 image
+
+This will start a MySQL container accessible at `localhost:3306` with the database `ragdb` and password `1234`.
+
+El comando para iniciar la app es:
+```sh
+node app.js
+```

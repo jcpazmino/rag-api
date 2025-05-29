@@ -85,8 +85,6 @@ router.post('/', upload.single('pdf'), async (req, res) => {
       ids.push(`frag_${Date.now()}_${i}`);
     }
 
-    // const collection = await createCollection(COLLECTION_NAME);
-    //await addToCollection(collection.id, ids, embeddings, metadatas);
     await addToCollection(COLLECTION_NAME, ids, embeddings, metadatas, chunks);
 
     res.json({ message: `✅ ${chunks.length} fragmentos procesados y almacenados en Chroma.` });
@@ -109,13 +107,17 @@ export async function createEmbedding(file) {
     const metadatas = [];
     const embeddings = [];
     const ids = [];
+    let totalTokens = 0;
 
     for (let i = 0; i < chunks.length; i++) {
       const chunk = chunks[i];
       const embedding = await getEmbedding(chunk);
 
+      const tokens = encoder.encode(chunk);
+      totalTokens += tokens.length;
+
       embeddings.push(embedding);
-      metadatas.push({ chunk, index: i });
+      metadatas.push({ chunk, index: i, tokens: tokens.length });
       ids.push(`frag_${Date.now()}_${i}`);
     }
 
@@ -127,10 +129,18 @@ export async function createEmbedding(file) {
 
     await addToCollection(collectionId, ids, embeddings, metadatas, chunks);
 
-    return { message: `✅ ${chunks.length} fragmentos procesados y almacenados en Chroma.` };
+    // === Guardar el archivo PDF en data/uploads/pdf ===
+    const uploadPdfDir = path.join('data', 'uploads', 'pdf');
+    if (!fs.existsSync(uploadPdfDir)) {
+      fs.mkdirSync(uploadPdfDir, { recursive: true });
+    }
+    const destPath = path.join(uploadPdfDir, file.originalname);
+    fs.copyFileSync(filePath, destPath); // Reemplaza si existe
+
+    return { totalChunks: `${chunks.length}`, totalTokens: totalTokens };
   } catch (err) {
-    console.error('❌ Error en createEmbedding:', err);
-    throw new Error('Error procesando el PDF.');
+    console.error('❌ Error en createEmbedding:', err.response?.data || err);
+    throw err;
   } finally {
     fs.unlinkSync(filePath);
   }
@@ -138,3 +148,4 @@ export async function createEmbedding(file) {
 
 
 export default router;
+
