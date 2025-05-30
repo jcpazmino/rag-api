@@ -191,6 +191,16 @@ curl -Method POST http://localhost:8000/api/v2/tenants/default_tenant/databases 
 curl http://localhost:8000/api/v2/tenants/default_tenant/databases
 ```
 
+## Reiniciar la colección en ChromaDB
+
+Para reiniciar la colección `documentos_rag` (eliminarla y crearla de nuevo) usando el endpoint expuesto por la API, ejecuta el siguiente comando desde la terminal:
+
+```powershell
+curl -X POST http://localhost:3000/query/reiniciar-coleccion
+```
+
+Asegúrate de que tu API esté corriendo y que el puerto (`3000`) corresponda al configurado en tu aplicación.
+
 ## MySQL Setup
 
 The command to create and run a MySQL container using Docker is:

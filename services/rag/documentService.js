@@ -1,6 +1,7 @@
 import { pool } from '../mysqlService.js';
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 
 // Agregar un documento
 export async function addDocument(document) {
@@ -16,7 +17,7 @@ export async function addDocument(document) {
       document.author,
       document.category,
       JSON.stringify(document.tags ?? []),
-      document.source ?? document.file_name,
+      document.source ?? 'data/uploads/pdf/' + document.file_name,
       document.language,
       now,
       document.uploaded_by ?? 'system', // Usuario por defecto si no se proporciona
@@ -72,7 +73,7 @@ export async function updateDocument(id, document) {
       document.author,
       document.category,
       JSON.stringify(document.tags ?? []),
-      document.source ?? document.file_name,
+      document.source ?? 'data/uploads/pdf/' + document.file_name,
       document.language,
       now,
       document.uploaded_by ?? 'system',
@@ -116,4 +117,3 @@ export function enviaFile(res, fileName) {
   const fileStream = fs.createReadStream(filePath);
   fileStream.pipe(res);
 }
-
