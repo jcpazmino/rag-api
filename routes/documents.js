@@ -5,7 +5,8 @@ import {
   getDocumentById,
   updateDocument,
   deleteDocument,
-  enviaFile
+  enviaFile,
+  getDocumentByTitle 
 } from '../services/rag/documentService.js';
 
 const router = express.Router();
@@ -17,6 +18,21 @@ router.post('/', async (req, res) => {
     res.status(201).json(doc);
   } catch (err) {
     res.status(500).json({ error: 'Error al crear documento.' });
+  }
+});
+
+// Obtener documento por título
+router.get('/by-title', async (req, res) => {
+  const { title } = req.query;
+  if (!title) {
+    return res.status(400).json({ error: 'El parámetro title es requerido.' });
+  }
+  try {
+    const doc = await getDocumentByTitle(title);
+  //  if (!doc) return res.status(404).json({ error: 'No encontrado' });
+    res.json(doc);
+  } catch (err) {
+    res.status(500).json({ error: 'Error al obtener documento por título.' });
   }
 });
 

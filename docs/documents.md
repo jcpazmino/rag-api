@@ -24,7 +24,7 @@ CREATE TABLE documents (
   total_tokens INT DEFAULT 0,
   embedding_model VARCHAR(100),
   version VARCHAR(50),
-  status ENUM('pendiente', 'procesado', 'error') DEFAULT 'pendiente'
+  status ENUM('pendiente', 'procesado', 'error','inactivo') DEFAULT 'pendiente'
 );
 ```
 
@@ -50,7 +50,7 @@ CREATE TABLE documents (
 | `total_tokens`   | INT          | Total estimado de tokens del documento (usado para costos y métricas).      |
 | `embedding_model`| VARCHAR(100) | Modelo utilizado para generar los embeddings (ej. OpenAI).                  |
 | `version`        | VARCHAR(50)  | Versión del documento, si aplica.                                           |
-| `status`         | ENUM         | Estado del procesamiento: `pendiente`, `procesado`, o `error`.              |
+| `status`         | ENUM         | Estado del procesamiento: `pendiente`, `procesado`, o `error`.   `inactivo`           |
 
 ---
 

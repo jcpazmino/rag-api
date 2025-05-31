@@ -32,15 +32,27 @@ export async function addDocument(document) {
   return { id: result.insertId, ...document, upload_date: now, status: 'procesado' };
 }
 
-// Consultar todos los documentos
+// Consultar todos los documentos con status 'procesado'
 export async function getAllDocuments(pageSize = 100) {
-  const [rows] = await pool.query('SELECT * FROM documents ORDER BY title LIMIT ?', [pageSize]);
+  const [rows] = await pool.query(
+    'SELECT * FROM documents WHERE status = ? ORDER BY title LIMIT ?',
+    ['procesado', pageSize]
+  );
   return rows;
 }
 
 // Consultar un documento por ID
 export async function getDocumentById(id) {
   const [rows] = await pool.query('SELECT * FROM documents WHERE id = ?', [id]);
+  return rows[0];
+}
+
+// Consultar un documento por título (búsqueda parcial, case-insensitive)
+export async function getDocumentByTitle(title) {
+  const [rows] = await pool.query('SELECT * FROM documents WHERE title = ?', [title] );
+  if (!rows || rows.length === 0) {
+    return null;
+  }
   return rows[0];
 }
 
@@ -89,9 +101,9 @@ export async function updateDocument(id, document) {
   return { id, ...document, upload_date: now, status: 'procesado' };
 }
 
-// Borrar un documento
+// Borrar un documento (marcar como inactivo)
 export async function deleteDocument(id) {
-  await pool.query('DELETE FROM documents WHERE id = ?', [id]);
+  await pool.query('UPDATE documents SET status = ? WHERE id = ?', ['inactivo', id]);
   return { id };
 }
 

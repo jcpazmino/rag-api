@@ -198,6 +198,9 @@ Para reiniciar la colección `documentos_rag` (eliminarla y crearla de nuevo) us
 ```powershell
 curl -X POST http://localhost:3000/query/reiniciar-coleccion
 ```
+```terminal
+curl.exe -X POST http://localhost:3000/query/reiniciar-coleccion
+```
 
 Asegúrate de que tu API esté corriendo y que el puerto (`3000`) corresponda al configurado en tu aplicación.
 
