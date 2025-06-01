@@ -71,15 +71,11 @@ export async function addToCollection(collectionId, ids, embeddings, metadatas, 
 }
 
 export async function queryCollection(collectionId, queryEmbedding, n = 3) {
-
-
   const body = {
     query_embeddings: [queryEmbedding], // array de arrays
     n_results: n,
     include: ["documents", "metadatas", "distances"]
   };
-
-
 
   const res = await axios.post(
     `${BASE_URL}/api/v2/tenants/${TENANT}/databases/${DATABASE}/collections/${collectionId}/query`,
