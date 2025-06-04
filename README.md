@@ -205,6 +205,7 @@ rag_api
 ```
 
 This is set via the environment variable `CHROMA_DATABASE=rag_api` in your `.env` file.
+
 **To create the database in PowerShell:**
 ```powershell
 curl -Method POST http://localhost:8000/api/v2/tenants/default_tenant/databases `
@@ -217,10 +218,12 @@ curl -Method POST http://localhost:8000/api/v2/tenants/default_tenant/databases 
 curl http://localhost:8000/api/v2/tenants/default_tenant/databases
 ```
 
-## Reiniciar la colección en ChromaDB
+**To get collection information:**
+```powershell
+curl http://localhost:8000/api/v2/tenants/default_tenant/databases/rag_api/collections
+```
 
-Para reiniciar la colección `documentos_rag` (eliminarla y crearla de nuevo) usando el endpoint expuesto por la API, ejecuta el siguiente comando desde la terminal:
-
+**To restart the collection in ChromaDB:**
 ```powershell
 curl -X POST http://localhost:3000/query/reiniciar-coleccion
 ```
@@ -268,7 +271,7 @@ La arquitectura de RAGInternos es modular y orientada a servicios. Utiliza Node.
 El sistema sigue una arquitectura modular basada en servicios, donde cada módulo se encarga de una responsabilidad específica (gestión de documentos, procesamiento, almacenamiento, etc.). Utiliza Node.js como backend, Express para la gestión de rutas HTTP y MySQL como base de datos principal.
 
 ```mermaid
-flowchart TD
+graph TD
     Client[Cliente/Frontend]
     API[API Express/Node.js]
     DB[(MySQL)]
@@ -427,7 +430,7 @@ sequenceDiagram
 ### Arquitectura General
 
 ```mermaid
-flowchart TD
+graph TD
     Client[Cliente/Frontend]
     API[API Express/Node.js]
     DB[(MySQL)]

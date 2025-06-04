@@ -130,15 +130,6 @@ export async function createEmbedding(file) {
 
     await addToCollection(collectionId, ids, embeddings, metadatas, chunks);
 
-    //const newFileName = generateUniqueAlphanumericFileName(file.originalname);
-    // === Guardar el archivo PDF en data/uploads/pdf === deshabilitado por ahora está muy lento y no encuentro el motivo para guardarlo
-    // const uploadPdfDir = path.join('data', 'uploads', 'pdf');
-    // if (!fs.existsSync(uploadPdfDir)) {
-    //   fs.mkdirSync(uploadPdfDir, { recursive: true });
-    // }
-    // const destPath = path.join(uploadPdfDir, newFileName);
-    // fs.copyFileSync(filePath, destPath); // Reemplaza si existe
-
     return { totalChunks: `${chunks.length}`, totalTokens: totalTokens, newFileName: collectionId };
   } catch (err) {
     console.error('❌ Error en createEmbedding:', err.response?.data || err);
@@ -148,13 +139,6 @@ export async function createEmbedding(file) {
   }
 }
 
-function generateUniqueAlphanumericFileName(originalFileName) {
-    const randomBytes = crypto.randomBytes(16).toString('hex'); // Genera 32 caracteres hexadecimales
-    const fileExtension = path.extname(originalFileName); // Obtiene la extensión original del archivo
-    const uniqueFileName = `${randomBytes}${fileExtension}`; // Combina el nombre único con la extensión
-
-    return uniqueFileName;
-}
 
 export default router;
 
