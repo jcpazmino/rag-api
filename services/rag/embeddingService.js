@@ -130,7 +130,7 @@ export async function createEmbedding(file) {
 
     await addToCollection(collectionId, ids, embeddings, metadatas, chunks);
 
-    return { totalChunks: `${chunks.length}`, totalTokens: totalTokens, newFileName: collectionId };
+    return { totalChunks: `${chunks.length}`, totalTokens: totalTokens, collection_id: collectionId, embedding_ids: ids };
   } catch (err) {
     console.error('❌ Error en createEmbedding:', err.response?.data || err);
     throw err;

@@ -12,6 +12,7 @@ import embedRoutes from './routes/embed.js';
 import queryRoutes from './routes/query.js';
 import documentsRouter from './routes/documents.js';
 import documentChunksRouter from './routes/documentChunks.js';
+import usersRouter from './routes/users.js';
 import { pool } from './services/mysqlService.js'; // Asegúrate de tener este archivo
 import axios from 'axios';
 
@@ -31,6 +32,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/query', queryRoutes);
 app.use('/documents', documentsRouter);
 app.use('/document-chunks', documentChunksRouter);
+app.use('/', usersRouter);
 
 app.get('/', (req, res) => {
   res.send('🧠 RAG API is running...');

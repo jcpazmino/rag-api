@@ -1,22 +1,18 @@
-# Tabla: document_chunks
+# Tabla: document_Embeddings
 
-Esta tabla almacena los **fragmentos (chunks)** de texto extraídos de documentos para su procesamiento semántico con embeddings, como parte de un sistema RAG (Retrieval-Augmented Generation).
+Esta tabla almacena los **fragmentos (chunks)** de texto extraídos de documentos para su procesamiento semántico con embeddings, como parte de un sistema RAG (Retrieval-Augmented Generation). Nos sirve para el proceso de filtrado
 
 ---
 
 ## 📄 Estructura de la tabla
 
 ```sql
-CREATE TABLE document_chunks (
+CREATE TABLE document_Embeddings (
   id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  collection_id varchar(255) NOT NULL,
   document_id BIGINT NOT NULL,
-  chunk_index INT NOT NULL,
-  content TEXT NOT NULL,
-  page_number INT DEFAULT NULL,
-  tokens INT NOT NULL,
-  embedding_id VARCHAR(255),
+  embedding_ids JSON,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (document_id) REFERENCES documents(id)
 );
 ```
@@ -28,27 +24,18 @@ CREATE TABLE document_chunks (
 | Campo         | Tipo        | Descripción                                                                 |
 |---------------|-------------|-----------------------------------------------------------------------------|
 | `id`          | BIGINT      | Identificador único del fragmento.                                          |
+| `collection_id` | varchar   | ID devuelto por el ambeddding,                                              |
 | `document_id` | BIGINT      | ID del documento original (relación con la tabla `documents`).              |
-| `chunk_index` | INT         | Índice que indica el orden del fragmento dentro del documento.              |
-| `content`     | TEXT        | Contenido textual del fragmento (chunk).                                    |
-| `page_number` | INT         | Página del documento de donde se extrajo el fragmento (si se conoce).       |
-| `tokens`      | INT         | Número de tokens estimados en el fragmento, útil para control y costos.     |
-| `embedding_id`| VARCHAR(255)| ID del vector correspondiente en la base vectorial (Chroma, Pinecone, etc.).|
+| `embedding_ids`| JSON       | IDs vectores correspondientes en la base vectorial (Chroma, Pinecone, etc.).|
 | `created_at`  | DATETIME    | Fecha y hora de creación del registro.                                      |
-| `updated_at`  | DATETIME    | Fecha y hora de última modificación del registro.                           |
 
 ---
 
 ## 🔗 Relaciones
 
 - **document_id** es una clave foránea que se conecta con la tabla `documents`.
-- Cada documento puede tener múltiples fragmentos, representando una relación 1 a N.
+- Cada documento puede tener múltiples fragmentos, representando una relación 1 a N. a cada fragmento corresponde un 
+  elemento del vector almacenado en embedding_ids
 
----
 
-## 🧠 Uso en el sistema RAG
-
-- Permite **reconstruir el contexto** del documento original por orden de fragmentos.
-- Facilita **la búsqueda semántica**, ya que cada fragmento puede ser vinculado a su vector en una base de datos vectorial.
-- Proporciona **trazabilidad** al identificar la página y orden original del contenido consultado.
 

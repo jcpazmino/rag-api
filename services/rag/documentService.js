@@ -29,7 +29,8 @@ export async function addDocument(document) {
       'procesado' // status fijo
     ]
   );
-  return { id: result.insertId, ...document, upload_date: now, status: 'procesado' };
+  
+  return result;
 }
 
 // Consultar todos los documentos con status 'procesado'

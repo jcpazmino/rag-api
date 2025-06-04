@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
         { role: "user", content: JSON.stringify(respuestaFormateada) }
       ]
     });
-    console.log(respuestaAgente.choices[0].message.content);
+    
     res.json(respuestaAgente.choices[0].message.content);
   } catch (err) {
     console.error('❌ Error en /query:', err);
@@ -109,10 +109,24 @@ router.post('/reiniciar-coleccion', async (req, res) => {
 });
 
 async function getQueryEmbedding(text, openai) {
-  const response = await openai.embeddings.create({
-    model: 'text-embedding-3-small',
-    input: text,
-  });
-  return response.data[0].embedding;
+  try {
+    if (!text || typeof text !== 'string') {
+      throw new Error('El texto de la consulta es inválido');
+    }
+
+    const response = await openai.embeddings.create({
+      model: 'text-embedding-3-small',
+      input: text.trim(),
+    });
+
+    if (!response.data || !response.data[0] || !response.data[0].embedding) {
+      throw new Error('Respuesta inválida de OpenAI');
+    }
+
+    return response.data[0].embedding;
+  } catch (error) {
+    console.error('Error generando embedding:', error);
+    throw error;
+  }
 }
 export default router;
