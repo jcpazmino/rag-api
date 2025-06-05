@@ -13,6 +13,7 @@ Este documento describe el funcionamiento de las rutas y la lógica asociada al 
 - [Lógica de Procesamiento (`services/rag/embeddingService.js`)](#lógica-de-procesamiento-servicesragembeddingservicejs)
 - [Consideraciones](#consideraciones)
 - [Ejemplo de Uso](#ejemplo-de-uso)
+- [Ejemplos de Respuesta y Manejo de Errores](#ejemplos-de-respuesta-y-manejo-de-errores)
 
 ---
 
@@ -151,6 +152,109 @@ curl -F "pdf=@/ruta/al/archivo.pdf" http://localhost:3000/embed/
 
 ```bash
 curl http://localhost:3000/embed/1234567890abcdef
+```
+
+[Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+## Ejemplos de Respuesta y Manejo de Errores
+
+### Respuestas Exitosas
+
+#### POST `/embed/`
+```json
+{
+  "totalChunks": "12",
+  "totalTokens": 3456,
+  "collection_id": "uuid_coleccion",
+  "embedding_ids": [
+    "frag_1234567890_0",
+    "frag_1234567890_1",
+    "frag_1234567890_2"
+  ]
+}
+```
+
+#### GET `/embed/:id`
+```json
+{
+  "id": "frag_1234567890_0",
+  "embedding": [0.1, 0.2, 0.3, ...],
+  "metadata": {
+    "chunk": "Texto del fragmento...",
+    "index": 0,
+    "tokens": 150
+  }
+}
+```
+
+### Códigos de Error y Respuestas
+
+#### 400 Bad Request
+```json
+{
+  "message": "No file uploaded"
+}
+```
+Ocurre cuando no se proporciona un archivo en la solicitud.
+
+#### 404 Not Found
+```json
+{
+  "message": "Embedding not found"
+}
+```
+Ocurre cuando se intenta acceder a un embedding que no existe.
+
+#### 500 Internal Server Error
+```json
+{
+  "message": "Error creating embedding",
+  "error": "Detalles del error específico"
+}
+```
+Ocurre cuando hay un error en el procesamiento del archivo o en la generación de embeddings.
+
+### Casos de Error Comunes
+
+1. **Archivo no válido**
+   - Formato incorrecto (no PDF)
+   - Archivo corrupto
+   - Archivo vacío
+
+2. **Errores de procesamiento**
+   - Fallo en la extracción de texto
+   - Error en la generación de embeddings
+   - Problemas de conexión con OpenAI
+
+3. **Errores de almacenamiento**
+   - Fallo al guardar en ChromaDB
+   - Problemas de permisos en el sistema de archivos
+   - Errores de conexión con la base de datos
+
+### Ejemplos de Manejo de Errores
+
+#### Error en el procesamiento del PDF
+```json
+{
+  "message": "Error processing PDF",
+  "error": "Failed to extract text from PDF"
+}
+```
+
+#### Error en la generación de embeddings
+```json
+{
+  "message": "Error generating embeddings",
+  "error": "OpenAI API error: Invalid API key"
+}
+```
+
+#### Error en el almacenamiento
+```json
+{
+  "message": "Error storing embeddings",
+  "error": "ChromaDB connection failed"
+}
 ```
 
 [Volver a la tabla de contenidos](#tabla-de-contenidos)
